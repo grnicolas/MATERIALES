@@ -1,0 +1,28 @@
+void ll_map(LinkedList* this, void (*pFunc)(void *)){
+    int i;
+
+    if( this != NULL && pFunc != NULL )
+    {
+        for(i=0; i< ll_len(this) ; i++)
+        {
+                pFunc(ll_get(this,i));
+        }
+    }
+}
+
+void dominio_mapTipo(void* pDominio){
+    char aux[10];
+
+    if (pDominio!= NULL){
+         dominio_getDominio(pDominio, aux);
+
+        if (aux[0]<'0' || aux [0]>'9'){
+            dominio_setTipo(pDominio, 'A');
+        }
+        else{
+            dominio_setTipo(pDominio, 'M');
+        }
+    }
+}
+
+ll_map(listaDominios, dominio_mapTipo);
